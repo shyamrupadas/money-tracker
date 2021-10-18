@@ -25,14 +25,6 @@ const initialState: FinancialStatusType = {
   sum: 0
 };
 
-// export const changeSum = createAsyncThunk(
-//   'financialStatus/changeSum',
-//   async ({id, sum}: any) => {
-//     dispatch({ type: 'setSum', payload: { id: id, sum: sum } })
-//
-//   }
-// );
-
 export const financialStatusSlice = createSlice({
   name: 'financialStatus',
   initialState,
