@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CardType } from '../../types/types';
 import { useAppDispatch } from '../../hooks/hooks';
-import { setSum } from '../../store/financialStatusSlice';
+import { setCardSum } from '../../store/financialStatusSlice';
 
 
 type CardProps = {
@@ -14,7 +14,7 @@ export const Card: React.FC<CardProps> = ({ card, index }) => {
   const dispatch = useAppDispatch();
 
   const onInput = (value: string) => {
-    dispatch({type: setSum, payload: {id: index, sum: +value}});
+    dispatch({type: setCardSum, payload: {id: index, sum: +value}});
     setEditMode(false);
   };
 
