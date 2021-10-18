@@ -1,17 +1,17 @@
 import { Card } from './Card';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import React, { useEffect } from 'react';
-import { setSum } from '../../store/financialStatusSlice';
+import { financialStatusSlice } from '../../store/financialStatusSlice';
 
 export const FinancialStatus: React.FC = () => {
 
   const { cards, sum } = useAppSelector(state => state.financialStatusSlice);
   const dispatch = useAppDispatch();
-
+  const {setSum} = financialStatusSlice.actions;
 
   useEffect(() => {
-    dispatch({ type: setSum, payload: cards.reduce((sum, current) => sum + current.sum, 0) })
-  }, [cards, dispatch]);
+    dispatch(setSum(cards.reduce((sum, current) => sum + current.sum, 0)));
+  }, [cards, dispatch, setSum]);
 
   return (
     <>
