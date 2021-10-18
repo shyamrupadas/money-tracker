@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { CardsType } from './FinancialStatus';
+import { CardType } from '../../types/types';
+import { useAppDispatch } from '../../hooks/hooks';
+import { setSum } from '../../store/financialStatusSlice';
 
-type CardType = {
-  card: CardsType
-  changeSum: (id: number, value: string) => void
+
+type CardProps = {
+  card: CardType
+  index: number
 };
 
+export const Card: React.FC<CardProps> = ({ card, index }) => {
 
-export const Card: React.FC<CardType> = ({ card, changeSum }) => {
+  const dispatch = useAppDispatch();
 
   const onInput = (value: string) => {
-    changeSum(card.id, value);
+    dispatch({type: setSum, payload: {id: index, sum: +value}});
     setEditMode(false);
   };
 

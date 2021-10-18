@@ -1,47 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
 import { Card } from './Card';
-import { CardsType } from '../../types/types';
-
-
+import { useAppSelector } from '../../hooks/hooks';
+import React from 'react';
 
 export const FinancialStatus: React.FC = () => {
 
-  const countSum = (arr: Array<CardsType>) => {
-    let res = 0;
-    arr.forEach(el => {
-      res += el.sum;
-    })
-    return res;
-  };
-
-  const [cards, setCards] = useState<Array<CardsType>>([
-    {
-      id: 1,
-      name: 'Сбербанк',
-      sum: 50000,
-      actualDate: 12021987
-    },
-    {
-      id: 2,
-      name: 'Тиньков',
-      sum: 41000,
-      actualDate: 13022984
-    },
-  ]);
-  const [sum, setSum] = useState(countSum(cards));
-
-  useEffect(() => {
-    setSum(countSum(cards));
-  }, [cards])
-
-  const changeSum = useCallback((id: number, sum: string) => {
-    setCards(
-      cards.map((el: CardsType) =>
-        el.id === id
-          ? { ...el, sum: +sum } : el
-      )
-    );
-  }, [cards]);
+  const { cards, sum } = useAppSelector(state => state.financialStatusSlice);
 
   return (
     <>
@@ -62,7 +25,7 @@ export const FinancialStatus: React.FC = () => {
           </thead>
           <tbody>
           {
-            cards.map(card => <Card key={card.id} card={card} changeSum={changeSum} />)
+            cards.map((card, index) => <Card key={card.id} card={card} index={index}/>)
           }
           </tbody>
           <tfoot>
