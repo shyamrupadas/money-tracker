@@ -46,7 +46,7 @@ export const FinancialStatus: React.FC = () => {
       )
     );
     console.log('hi')
-  }, []);
+  }, [cards]);
 
   return (
     <>
