@@ -38,8 +38,7 @@ export const financialStatusSlice = createSlice({
   initialState,
   reducers: {
     setCardSum: (state, action) => {
-      //todo Сделать с методом find
-      state.cards[action.payload.id].sum = action.payload.sum
+      state.cards[state.cards.findIndex(item => item.id === action.payload.id)].sum = action.payload.sum;
     },
     setSum: (state, action) => {
       state.sum = action.payload;

@@ -10,7 +10,7 @@ export const FinancialStatus: React.FC = () => {
 
 
   useEffect(() => {
-    dispatch({type: setSum, payload: cards.reduce((sum, current) => sum + current.sum, 0)})
+    dispatch({ type: setSum, payload: cards.reduce((sum, current) => sum + current.sum, 0) })
   }, [cards, dispatch]);
 
   return (
@@ -32,7 +32,7 @@ export const FinancialStatus: React.FC = () => {
           </thead>
           <tbody>
           {
-            cards.map((card, index) => <Card key={card.id} card={card} index={index} />)
+            cards.map((card) => <Card key={card.id} card={card} />)
           }
           </tbody>
           <tfoot>

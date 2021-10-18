@@ -6,15 +6,14 @@ import { setCardSum } from '../../store/financialStatusSlice';
 
 type CardProps = {
   card: CardType
-  index: number
 };
 
-export const Card: React.FC<CardProps> = ({ card, index }) => {
+export const Card: React.FC<CardProps> = ({ card }) => {
 
   const dispatch = useAppDispatch();
 
   const onInput = (value: string) => {
-    dispatch({type: setCardSum, payload: {id: index, sum: +value}});
+    dispatch({type: setCardSum, payload: {id: card.id, sum: +value}});
     setEditMode(false);
   };
 
