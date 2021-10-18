@@ -1,10 +1,17 @@
 import { Card } from './Card';
-import { useAppSelector } from '../../hooks/hooks';
-import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import React, { useEffect } from 'react';
+import { setSum } from '../../store/financialStatusSlice';
 
 export const FinancialStatus: React.FC = () => {
 
   const { cards, sum } = useAppSelector(state => state.financialStatusSlice);
+  const dispatch = useAppDispatch();
+
+
+  useEffect(() => {
+    dispatch({type: setSum, payload: cards.reduce((sum, current) => sum + current.sum, 0)})
+  }, [cards, dispatch]);
 
   return (
     <>
@@ -25,17 +32,18 @@ export const FinancialStatus: React.FC = () => {
           </thead>
           <tbody>
           {
-            cards.map((card, index) => <Card key={card.id} card={card} index={index}/>)
+            cards.map((card, index) => <Card key={card.id} card={card} index={index} />)
           }
           </tbody>
           <tfoot>
           <tr>
             <td>Итого</td>
             <td>{sum}</td>
-            <td>-</td>
+            <td>&nbsp;</td>
           </tr>
           </tfoot>
         </table>
+        <p style={{ marginTop: '20px' }}>Двойной клик по сумме для изменения</p>
       </article>
     </>
   );
