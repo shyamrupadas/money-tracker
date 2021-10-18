@@ -1,8 +1,8 @@
 import React from 'react';
-import { FinancialStatus } from './component';
+import { FinancialStatus } from './components';
 import GlobalStyle from './globalStyle';
 
-const App = () => {
+export const App = () => {
 
   return (
     <>
@@ -11,5 +11,3 @@ const App = () => {
     </>
   );
 };
-
-export default App;
