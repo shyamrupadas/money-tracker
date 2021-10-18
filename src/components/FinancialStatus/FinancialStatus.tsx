@@ -1,12 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Card } from './Card';
+import { CardsType } from '../../types/types';
 
-export type CardsType = {
-  id: number
-  name: string
-  sum: number
-  actualDate: number
-};
+
 
 export const FinancialStatus: React.FC = () => {
 
