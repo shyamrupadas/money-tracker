@@ -42,10 +42,9 @@ export const FinancialStatus: React.FC = () => {
     setCards(
       cards.map((el: CardsType) =>
         el.id === id
-        ? {...el, sum: +sum } : el
+          ? { ...el, sum: +sum } : el
       )
     );
-    console.log('hi')
   }, [cards]);
 
   return (
@@ -58,14 +57,18 @@ export const FinancialStatus: React.FC = () => {
       <article>
         <table>
           <caption>Средства на руках</caption>
+          <thead>
           <tr>
             <th>Карты</th>
             <th>Сумма</th>
             <th>Актуальность</th>
           </tr>
+          </thead>
+          <tbody>
           {
             cards.map(card => <Card key={card.id} card={card} changeSum={changeSum} />)
           }
+          </tbody>
           <tfoot>
           <tr>
             <td>Итого</td>
