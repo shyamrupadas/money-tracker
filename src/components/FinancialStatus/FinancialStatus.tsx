@@ -13,6 +13,13 @@ export const FinancialStatus: React.FC = () => {
     dispatch(setSum(cards.reduce((sum, current) => sum + current.sum, 0)));
   }, [cards, dispatch, setSum]);
 
+  useEffect(() => {
+    localStorage.setItem('cards', JSON.stringify(cards));
+  }, [cards])
+
+
+
+
   return (
     <>
       <header>

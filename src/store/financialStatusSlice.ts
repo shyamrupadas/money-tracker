@@ -2,26 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FinancialStatusType } from '../types/types';
 
 const initialState: FinancialStatusType = {
-  cards: [
-    {
-      id: 1,
-      name: 'Сбербанк',
-      sum: 0,
-      actualDate: 1234567
-    },
-    {
-      id: 2,
-      name: 'Хоум-Кредит',
-      sum: 0,
-      actualDate: 1234567
-    },
-    {
-      id: 3,
-      name: 'Тиньков',
-      sum: 0,
-      actualDate: 1234567
-    },
-  ],
+  cards: JSON.parse(localStorage.getItem('cards') as string) || [],
   sum: 0
 };
 
