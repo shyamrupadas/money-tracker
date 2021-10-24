@@ -11,7 +11,7 @@ export const FinancialStatus: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchCards());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(setSum(cards.reduce((sum, current) => sum + current.sum, 0)));
