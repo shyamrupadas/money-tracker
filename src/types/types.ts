@@ -8,4 +8,6 @@ export type CardType = {
 export type FinancialStatusType = {
   cards: CardType[]
   sum: number
+  pending: boolean
+  error: string | null
 };

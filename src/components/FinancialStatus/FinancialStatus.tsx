@@ -1,24 +1,24 @@
 import { Card } from './Card';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import React, { useEffect } from 'react';
-import { financialStatusSlice } from '../../store/financialStatusSlice';
+import { fetchCards, financialStatusSlice } from '../../store/financialStatusSlice';
 
 export const FinancialStatus: React.FC = () => {
 
-  const { cards, sum } = useAppSelector(state => state.financialStatusSlice);
+  const { cards, sum, pending, error } = useAppSelector(state => state.financialStatusSlice);
   const dispatch = useAppDispatch();
-  const {setSum} = financialStatusSlice.actions;
+  const { setSum } = financialStatusSlice.actions;
+
+  useEffect(() => {
+    dispatch(fetchCards());
+  }, []);
 
   useEffect(() => {
     dispatch(setSum(cards.reduce((sum, current) => sum + current.sum, 0)));
   }, [cards, dispatch, setSum]);
 
-  useEffect(() => {
-    localStorage.setItem('cards', JSON.stringify(cards));
-  }, [cards])
-
-
-
+  if (error) return <h2>{error}</h2>
+  if (pending) return <h2>Загрузка...</h2>
 
   return (
     <>
