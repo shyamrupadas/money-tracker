@@ -50,6 +50,7 @@ export const FinancialStatus: React.FC = () => {
           </tr>
           </tfoot>
         </table>
+        <button>Добавить карту</button>
         <p style={{ marginTop: '20px' }}>Двойной клик по сумме для изменения</p>
       </article>
     </>

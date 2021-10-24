@@ -10,10 +10,10 @@ type CardProps = {
 export const Card: React.FC<CardProps> = ({ card }) => {
 
   const dispatch = useAppDispatch();
-  const {setCardSum} = financialStatusSlice.actions;
+  const { setCardSum } = financialStatusSlice.actions;
 
   const onInput = (value: string) => {
-    dispatch(setCardSum ({id: card.id, sum: +value}));
+    dispatch(setCardSum({ id: card.id, sum: +value }));
     setEditMode(false);
   };
 
@@ -25,6 +25,7 @@ export const Card: React.FC<CardProps> = ({ card }) => {
       <td>{card.name}</td>
       <td
         onDoubleClick={() => setEditMode(true)}
+        style={{ cursor: 'pointer' }}
       >{card.sum}</td>
       <td>{card.actualDate}</td>
     </tr>
