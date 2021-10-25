@@ -83,10 +83,6 @@ export const financialStatusSlice = createSlice({
       // @ts-ignore
       state.error = action.payload;
     });
-    builder.addCase(changeCardSum.pending, (state) => {
-      state.pending = true;
-      state.error = null;
-    });
     builder.addCase(changeCardSum.fulfilled, (state, action) => {
       state.pending = false;
       // @ts-ignore
