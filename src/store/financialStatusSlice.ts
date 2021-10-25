@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CardType, FinancialStatusType } from '../types/types';
-import { getCards, updateCard } from '../api/api';
+import { deleteCard, getCards, updateCard } from '../api/api';
 
 const initialState: FinancialStatusType = {
   cards: [],
@@ -25,6 +25,17 @@ export const changeCardSum = createAsyncThunk(
   async ({ card, sum }: { card: CardType, sum: number }, { rejectWithValue }) => {
     try {
       return await updateCard({...card, sum: sum});
+    } catch (e) {
+      return rejectWithValue(e.message)
+    }
+  }
+);
+
+export const removeCard = createAsyncThunk(
+  'financialStatus/removeCard',
+  async (id: string, { rejectWithValue }) => {
+    try {
+      return await deleteCard(id);
     } catch (e) {
       return rejectWithValue(e.message)
     }
@@ -70,6 +81,16 @@ export const financialStatusSlice = createSlice({
       state.cards[state.cards.findIndex(item => item._id === action.payload._id)] = action.payload;
     });
     builder.addCase(changeCardSum.rejected, (state, action) => {
+      state.pending = false;
+      // @ts-ignore
+      state.error = action.payload;
+    });
+    builder.addCase(removeCard.fulfilled, (state, action) => {
+      state.pending = false;
+      // @ts-ignore
+      state.cards = state.cards.filter((item: CardType) => item._id !== action.payload._id);
+    });
+    builder.addCase(removeCard.rejected, (state, action) => {
       state.pending = false;
       // @ts-ignore
       state.error = action.payload;

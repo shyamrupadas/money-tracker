@@ -16,3 +16,8 @@ export const updateCard = async (card: CardType) => {
     .then(res => res.data);
 };
 
+export const deleteCard = async (id: string) => {
+  return await axios
+    .delete(cardsUrl + id)
+    .then(res => res.data);
+};

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CardType } from '../../types/types';
 import { useAppDispatch } from '../../hooks/hooks';
-import { changeCardSum } from '../../store/financialStatusSlice';
+import { changeCardSum, removeCard } from '../../store/financialStatusSlice';
 
 type CardProps = {
   card: CardType
@@ -16,6 +16,12 @@ export const Card: React.FC<CardProps> = ({ card }) => {
     setEditMode(false);
   };
 
+  const onButton = () => {
+    if (window.confirm('вы уверены?')) {
+      dispatch(removeCard(card._id));
+    }
+  };
+
   const [editMode, setEditMode] = useState(false);
 
   return <>
@@ -27,6 +33,11 @@ export const Card: React.FC<CardProps> = ({ card }) => {
         style={{ cursor: 'pointer' }}
       >{card.sum}</td>
       <td>{card.actualDate}</td>
+      <td>
+        <button onClick={onButton} style={{ width: '20px', cursor: 'pointer' }}
+        >x
+        </button>
+      </td>
     </tr>
     }
     {editMode &&
@@ -39,6 +50,7 @@ export const Card: React.FC<CardProps> = ({ card }) => {
         />
       </td>
       <td>{card.actualDate}</td>
+      <td>&nbsp;</td>
     </tr>
     }
   </>

@@ -35,6 +35,7 @@ export const FinancialStatus: React.FC = () => {
             <th>Карты</th>
             <th>Сумма</th>
             <th>Актуальность</th>
+            <th>&nbsp;</th>
           </tr>
           </thead>
           <tbody>
@@ -46,6 +47,7 @@ export const FinancialStatus: React.FC = () => {
           <tr>
             <td>Итого</td>
             <td>{sum}</td>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
           </tr>
           </tfoot>
