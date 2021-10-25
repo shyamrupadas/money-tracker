@@ -1,13 +1,16 @@
 import { Card } from './Card';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchCards, financialStatusSlice } from '../../store/financialStatusSlice';
+import { CreateCard } from './CreateCard';
 
 export const FinancialStatus: React.FC = () => {
 
   const { cards, sum, pending, error } = useAppSelector(state => state.financialStatusSlice);
   const dispatch = useAppDispatch();
   const { setSum } = financialStatusSlice.actions;
+
+  const [showCreateCard, setShowCreateCard] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCards());
@@ -52,7 +55,8 @@ export const FinancialStatus: React.FC = () => {
           </tr>
           </tfoot>
         </table>
-        <button>Добавить карту</button>
+        <button onClick={() => setShowCreateCard(true)}>Добавить карту</button>
+        {showCreateCard && <CreateCard />}
         <p style={{ marginTop: '20px' }}>Двойной клик по сумме для изменения</p>
       </article>
     </>
