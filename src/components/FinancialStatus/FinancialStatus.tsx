@@ -39,7 +39,7 @@ export const FinancialStatus: React.FC = () => {
           </thead>
           <tbody>
           {
-            cards.map((card) => <Card key={card.id} card={card} />)
+            cards.map((card) => <Card key={card._id} card={card} />)
           }
           </tbody>
           <tfoot>

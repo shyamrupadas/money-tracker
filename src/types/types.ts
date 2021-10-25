@@ -1,8 +1,9 @@
 export type CardType = {
-  id: number
+  _id: number
   name: string
   sum: number
   actualDate: number
+  __v: number
 };
 
 export type FinancialStatusType = {
