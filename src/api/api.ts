@@ -21,3 +21,9 @@ export const deleteCard = async (id: string) => {
     .delete(cardsUrl + id)
     .then(res => res.data);
 };
+
+export const createCard = async (card: Object) => {
+  return await axios
+    .post(cardsUrl, card)
+    .then(res => res.data);
+};

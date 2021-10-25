@@ -56,7 +56,7 @@ export const FinancialStatus: React.FC = () => {
           </tfoot>
         </table>
         <button onClick={() => setShowCreateCard(true)}>Добавить карту</button>
-        {showCreateCard && <CreateCard />}
+        {showCreateCard && <CreateCard showModal={setShowCreateCard}/>}
         <p style={{ marginTop: '20px' }}>Двойной клик по сумме для изменения</p>
       </article>
     </>

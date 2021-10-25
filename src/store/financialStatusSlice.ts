@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CardType, FinancialStatusType } from '../types/types';
-import { deleteCard, getCards, updateCard } from '../api/api';
+import { createCard, deleteCard, getCards, updateCard } from '../api/api';
 
 const initialState: FinancialStatusType = {
   cards: [],
@@ -41,6 +41,18 @@ export const removeCard = createAsyncThunk(
     }
   }
 );
+
+export const makeCard = createAsyncThunk(
+  'financialStatus/makeCard',
+  async (card: Object , { rejectWithValue }) => {
+    try {
+      return await createCard({ ...card, actualDate: Date.now() });
+    } catch (e) {
+      return rejectWithValue(e.message)
+    }
+  }
+);
+
 
 export const financialStatusSlice = createSlice({
   name: 'financialStatus',
@@ -95,6 +107,17 @@ export const financialStatusSlice = createSlice({
       // @ts-ignore
       state.error = action.payload;
     });
+    builder.addCase(makeCard.fulfilled, (state, action) => {
+      state.pending = false;
+      // @ts-ignore
+      state.cards = [...state.cards, action.payload ];
+    });
+    builder.addCase(makeCard.rejected, (state, action) => {
+      state.pending = false;
+      // @ts-ignore
+      state.error = action.payload;
+    });
+
   }
 });
 
