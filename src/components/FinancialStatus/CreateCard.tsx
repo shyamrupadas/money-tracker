@@ -25,8 +25,9 @@ export const CreateCard: React.FC<CreateCardType> = ({showModal}) => {
         <input type='text' name='cardName' id='cardName' placeholder='Название карты' />
         <input type='text' name='cardSum' id='cardSum' placeholder='Сумма'/>
         <button>Добавить</button>
+        <button type='button' onClick={() => showModal(false)}>Отмена</button>
       </form>
-      <button onClick={() => showModal(false)}>Отмена</button>
+
     </>
   )
 };
