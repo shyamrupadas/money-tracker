@@ -12,6 +12,7 @@ Typescript, React.js, Redux Toolkit, Redux Thunk.
 
 ## Back-end
 
+Node.js, Express. <br>
 https://github.com/shyamrupadas/money-tracker-backend
 
 ## Todo
