@@ -17,7 +17,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(authUser());
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
