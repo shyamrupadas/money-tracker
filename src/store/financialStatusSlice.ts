@@ -53,7 +53,6 @@ export const makeCard = createAsyncThunk(
   }
 );
 
-
 export const financialStatusSlice = createSlice({
   name: 'financialStatus',
   initialState,
