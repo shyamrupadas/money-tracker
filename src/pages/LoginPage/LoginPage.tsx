@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { Input } from '../../components/input/Input';
-import { registrationUser } from '../../store/authSlice';
+import { loginUser } from '../../store/authSlice';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -28,7 +28,7 @@ export const LoginPage = () => {
       <Input type={'text'} placeholder={'Введите login'} value={login} setValue={setLogin} />
       <Input type={'password'} placeholder={'Введите пароль'} value={password} setValue={setPassword} />
       <ButtonPanel>
-        <button onClick={() => dispatch(registrationUser({ login, password }))}>Войти</button>
+        <button onClick={() => dispatch(loginUser({ login, password }))}>Войти</button>
         <button onClick={resetForm}>Сбросить</button>
       </ButtonPanel>
       <div className="mt-3">

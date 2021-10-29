@@ -17,5 +17,9 @@ export type authSliceType = {
   pending: boolean
   error: string
   isAuth: boolean
+  currentUser: {
+    userName: string
+    id: string
+  }
   jwt: string
 };

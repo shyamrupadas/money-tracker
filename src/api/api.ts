@@ -29,8 +29,16 @@ export const createCard = async (card: Object) => {
     .then(res => res.data);
 };
 
-export const registration = async (userName: string, password: string) => {
-  return await axios
-    .post(`${baseUrl}registration`, { userName, password })
-    .then(res => res.data);
+export const auth = {
+  registration(userName: string, password: string) {
+    return axios
+      .post(`${baseUrl}registration`, { userName, password })
+      .then(res => res.data);
+  },
+
+  login(userName: string, password: string) {
+    return axios
+      .post(`${baseUrl}login`, { userName, password })
+      .then(res => res.data);
+  },
 };
