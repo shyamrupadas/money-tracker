@@ -3,7 +3,7 @@ import { FinancialStatus } from './components';
 import GlobalStyle from './globalStyle';
 import { Navbar } from './components/navbar/Navbar';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Registration } from './components/registration/Registration';
+import { SignUpPage } from './pages/SignUpPage/SignUpPage';
 import './App.css';
 
 
@@ -15,7 +15,7 @@ export const App = () => {
       <Navbar />
       <div className='wrapper'>
         <Switch>
-          <Route path='/registration' component={Registration} />
+          <Route path='/registration' component={SignUpPage} />
           <Route path='/' component={FinancialStatus} />
         </Switch>
       </div>

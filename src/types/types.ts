@@ -12,3 +12,10 @@ export type FinancialStatusType = {
   pending: boolean
   error: string | null
 };
+
+export type authSliceType = {
+  pending: boolean
+  error: string
+  isAuth: boolean
+  jwt: string
+};

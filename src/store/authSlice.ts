@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { registration} from '../api/api';
+import { authSliceType } from '../types/types';
 
-const initialState = {
+const initialState: authSliceType = {
   pending: false,
-  error: null,
+  error: '',
   isAuth: false,
-  jwt: null
+  jwt: ''
 };
 
 export const registrationUser = createAsyncThunk(
