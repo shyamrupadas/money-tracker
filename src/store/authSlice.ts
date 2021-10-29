@@ -35,6 +35,18 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const authUser = createAsyncThunk(
+  'auth/auth',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await auth.auth();
+    } catch (e) {
+      return rejectWithValue(e.message)
+    }
+  }
+)
+
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -64,13 +76,23 @@ export const authSlice = createSlice({
       state.isAuth = true;
       // @ts-ignore
       localStorage.setItem('token', action.payload.token);
-
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.pending = false;
       // @ts-ignore
       state.error = action.payload;
-
+    });
+    builder.addCase(authUser.fulfilled, (state, action) => {
+      state.pending = false;
+      // @ts-ignore
+      state.currentUser = action.payload.user;
+      state.isAuth = true;
+    });
+    builder.addCase(authUser.rejected, (state, action) => {
+      state.pending = false;
+      // @ts-ignore
+      state.error = action.payload;
+      localStorage.removeItem('token');
     });
   }
 });

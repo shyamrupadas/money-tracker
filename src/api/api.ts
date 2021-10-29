@@ -41,4 +41,10 @@ export const auth = {
       .post(`${baseUrl}login`, { userName, password })
       .then(res => res.data);
   },
+  auth() {
+    return axios
+      .get(`${baseUrl}auth`,{headers:{Authorization: `Bearer ${localStorage.getItem('token')}`}})
+      .then(res => res.data);
+  }
+
 };
