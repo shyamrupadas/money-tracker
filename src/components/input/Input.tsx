@@ -11,6 +11,7 @@ type Input = {
 export const Input: React.FC<Input> = ({ type, placeholder, value, setValue }) => {
   return (
     <input onChange={e => setValue(e.target.value)}
+           autoComplete='off'
            value={value}
            className={s.input}
            type={type}

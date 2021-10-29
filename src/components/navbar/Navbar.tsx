@@ -10,7 +10,7 @@ export const Navbar: React.FC = () => {
         <img src={logo} alt='' className={s.logo} />
         <div className={s.header}>Money tracker</div>
         <div className={s.login}><NavLink to='/login'>Войти</NavLink></div>
-       <div className={s.registration}><NavLink to='/registration'>Регистрация</NavLink></div>
+       <div className={s.registration}><NavLink to='/signup'>Регистрация</NavLink></div>
       </div>
     </nav>
   );
