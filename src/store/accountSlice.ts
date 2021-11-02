@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CardType, FinancialStatusType } from '../types/types';
-import { createCard, deleteCard, getCards, updateCard } from '../api/api';
+import { createCard, deleteCard, getAccounts, updateCard } from '../api/api';
 
 const initialState: FinancialStatusType = {
   cards: [],
@@ -9,11 +9,11 @@ const initialState: FinancialStatusType = {
   error: null
 };
 
-export const fetchCards = createAsyncThunk(
-  'financialStatus/fetchCards',
+export const fetchAccounts = createAsyncThunk(
+  'account/fetchAccounts',
   async (_, { rejectWithValue }) => {
     try {
-      return await getCards();
+      return await getAccounts();
     } catch (e) {
       return rejectWithValue(e.message)
     }
@@ -53,7 +53,7 @@ export const makeCard = createAsyncThunk(
   }
 );
 
-export const financialStatusSlice = createSlice({
+export const accountSlice = createSlice({
   name: 'financialStatus',
   initialState,
   reducers: {
@@ -68,16 +68,16 @@ export const financialStatusSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(fetchCards.pending, (state) => {
+    builder.addCase(fetchAccounts.pending, (state) => {
       state.pending = true;
       state.error = null;
     });
-    builder.addCase(fetchCards.fulfilled, (state, action) => {
+    builder.addCase(fetchAccounts.fulfilled, (state, action) => {
       state.pending = false;
       // @ts-ignore
       state.cards = action.payload;
     });
-    builder.addCase(fetchCards.rejected, (state, action) => {
+    builder.addCase(fetchAccounts.rejected, (state, action) => {
       state.pending = false;
       // @ts-ignore
       state.error = action.payload;
@@ -116,5 +116,5 @@ export const financialStatusSlice = createSlice({
   }
 });
 
-export const { setCardSum, setSum } = financialStatusSlice.actions;
-export default financialStatusSlice.reducer;
+export const { setCardSum, setSum } = accountSlice.actions;
+export default accountSlice.reducer;

@@ -1,21 +1,21 @@
 import { Card } from './Card';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import React, { useEffect, useState } from 'react';
-import { fetchCards, financialStatusSlice } from '../../store/financialStatusSlice';
+import { fetchAccounts, accountSlice } from '../../store/accountSlice';
 import { CreateCard } from './CreateCard';
 import s from './FinancialStatus.module.css';
 
 export const FinancialStatus: React.FC = () => {
 
-  const { cards, sum, pending, error } = useAppSelector(state => state.financialStatusSlice);
+  const { cards, sum, pending, error } = useAppSelector(state => state.accountSlice);
   const dispatch = useAppDispatch();
-  const { setSum } = financialStatusSlice.actions;
+  const { setSum } = accountSlice.actions;
 
   const [showCreateCard, setShowCreateCard] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchCards());
-  }, [dispatch]);
+    useEffect(() => {
+      dispatch(fetchAccounts());
+    }, [dispatch]);
 
   useEffect(() => {
     dispatch(setSum(cards.reduce((sum, current) => sum + current.sum, 0)));

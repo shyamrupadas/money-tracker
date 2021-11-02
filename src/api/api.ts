@@ -2,30 +2,30 @@ import axios from 'axios';
 import { CardType } from '../types/types';
 
 export const baseUrl = 'https://peaceful-bastion-22116.herokuapp.com/api/';
-export const cardsUrl = `${baseUrl}cards/`
+export const accountUrl = `${baseUrl}account/`
 
 
-export const getCards = async () => {
+export const getAccounts = async () => {
   return await axios
-    .get(cardsUrl)
+    .get(accountUrl, {headers:{Authorization: `Bearer ${localStorage.getItem('token')}`}})
     .then(res => res.data);
 };
 
 export const updateCard = async (card: CardType) => {
   return await axios
-    .put(cardsUrl, card)
+    .put(accountUrl, card)
     .then(res => res.data);
 };
 
 export const deleteCard = async (id: string) => {
   return await axios
-    .delete(cardsUrl + id)
+    .delete(accountUrl + id)
     .then(res => res.data);
 };
 
 export const createCard = async (card: Object) => {
   return await axios
-    .post(cardsUrl, card)
+    .post(accountUrl, card)
     .then(res => res.data);
 };
 

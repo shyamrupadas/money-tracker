@@ -36,7 +36,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const authUser = createAsyncThunk(
-  'auth/auth',
+  'auth/authUser',
   async (_, { rejectWithValue }) => {
     try {
       return await auth.auth();
@@ -44,7 +44,7 @@ export const authUser = createAsyncThunk(
       return rejectWithValue(e.message)
     }
   }
-)
+);
 
 
 export const authSlice = createSlice({

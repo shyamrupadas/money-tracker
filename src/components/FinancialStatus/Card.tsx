@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CardType } from '../../types/types';
 import { useAppDispatch } from '../../hooks/hooks';
-import { changeCardSum, removeCard } from '../../store/financialStatusSlice';
+import { changeCardSum, removeCard } from '../../store/accountSlice';
 
 type CardProps = {
   card: CardType

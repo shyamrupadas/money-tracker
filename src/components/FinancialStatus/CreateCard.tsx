@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useAppDispatch } from '../../hooks/hooks';
-import { makeCard } from '../../store/financialStatusSlice';
+import { makeCard } from '../../store/accountSlice';
 
 type CreateCardType = {
   showModal: Dispatch<SetStateAction<boolean>>

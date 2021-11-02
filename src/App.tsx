@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { FinancialStatus } from './components';
 import GlobalStyle from './globalStyle';
 import { Navbar } from './components/navbar/Navbar';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { SignUpPage } from './pages/SignUpPage/SignUpPage';
 import './App.css';
 import { LoginPage } from './pages/LoginPage';
@@ -24,16 +24,17 @@ export const App = () => {
       <GlobalStyle />
       <Navbar />
       <div className='wrapper'>
-        {!isAuth &&
-        <Switch>
-          <Route path='/login' component={LoginPage} />
-          <Route path='/signup' component={SignUpPage} />
-        </Switch>
-        }
-        {isAuth &&
-        <Switch>
-          <Route path='/' component={FinancialStatus} />
-        </Switch>
+        {!isAuth ?
+          <Switch>
+            <Route path='/login' component={LoginPage} />
+            <Route path='/signup' component={SignUpPage} />
+            <Redirect to='/login' />
+          </Switch>
+          :
+          <Switch>
+            <Route path='/' component={FinancialStatus} />
+            <Redirect to='/' />
+          </Switch>
         }
       </div>
     </BrowserRouter>

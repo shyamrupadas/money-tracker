@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import financialStatusSlice from './financialStatusSlice';
+import accountSlice from './accountSlice';
 import authSlice from './authSlice';
 
 const rootReducer = combineReducers({
-  financialStatusSlice: financialStatusSlice,
+  accountSlice: accountSlice,
   authSlice: authSlice
 });
 
