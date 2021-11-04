@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useAppDispatch } from '../../hooks/hooks';
-import { makeCard } from '../../store/accountSlice';
+import { makeAccount } from '../../store/accountSlice';
 
 type CreateCardType = {
   showModal: Dispatch<SetStateAction<boolean>>
@@ -15,7 +15,7 @@ export const CreateCard: React.FC<CreateCardType> = ({showModal}) => {
       sum: +e.target.elements.cardSum.value,
     }
     e.preventDefault();
-    dispatch(makeCard(card));
+    dispatch(makeAccount(card));
     showModal(false);
   };
 

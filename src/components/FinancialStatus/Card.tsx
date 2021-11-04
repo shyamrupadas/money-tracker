@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { CardType } from '../../types/types';
+import { AccountType } from '../../types/types';
 import { useAppDispatch } from '../../hooks/hooks';
 import { changeCardSum, removeCard } from '../../store/accountSlice';
 
 type CardProps = {
-  card: CardType
+  card: AccountType
 };
 
 export const Card: React.FC<CardProps> = ({ card }) => {
