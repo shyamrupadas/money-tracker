@@ -32,7 +32,7 @@ export const Card: React.FC<CardProps> = ({ card }) => {
         onDoubleClick={() => setEditMode(true)}
         style={{ cursor: 'pointer' }}
       >{card.sum}</td>
-      <td>{card.actualDate}</td>
+      <td>{card.actualDate.slice(0, 10)}</td>
       <td>
         <button onClick={onButton} style={{ width: '20px', cursor: 'pointer' }}
         >x
