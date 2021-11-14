@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AccountType } from '../types/types';
+import { CardType } from '../types/types';
 
 export const baseUrl = 'https://peaceful-bastion-22116.herokuapp.com/api/';
 export const accountUrl = `${baseUrl}account/`
@@ -7,17 +7,11 @@ export const accountUrl = `${baseUrl}account/`
 
 export const getAccounts = async () => {
   return await axios
-    .get(accountUrl, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+    .get(accountUrl, {headers:{Authorization: `Bearer ${localStorage.getItem('token')}`}})
     .then(res => res.data);
 };
 
-export const createAccount = async (account: Object) => {
-  return await axios
-    .post(accountUrl, account, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
-    .then(res => res.data);
-};
-
-export const updateCard = async (card: AccountType) => {
+export const updateCard = async (card: CardType) => {
   return await axios
     .put(accountUrl, card)
     .then(res => res.data);
@@ -29,6 +23,11 @@ export const deleteCard = async (id: string) => {
     .then(res => res.data);
 };
 
+export const createCard = async (card: Object) => {
+  return await axios
+    .post(accountUrl, card)
+    .then(res => res.data);
+};
 
 export const auth = {
   registration(userName: string, password: string) {
@@ -44,7 +43,7 @@ export const auth = {
   },
   auth() {
     return axios
-      .get(`${baseUrl}auth`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+      .get(`${baseUrl}auth`,{headers:{Authorization: `Bearer ${localStorage.getItem('token')}`}})
       .then(res => res.data);
   }
 

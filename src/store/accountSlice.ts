@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AccountType, FinancialStatusType } from '../types/types';
-import { createAccount, deleteCard, getAccounts, updateCard } from '../api/api';
+import { CardType, FinancialStatusType } from '../types/types';
+import { createCard, deleteCard, getAccounts, updateCard } from '../api/api';
 
 const initialState: FinancialStatusType = {
   cards: [],
@@ -21,8 +21,8 @@ export const fetchAccounts = createAsyncThunk(
 );
 
 export const changeCardSum = createAsyncThunk(
-  'account/changeCardSum',
-  async ({ card, sum }: { card: AccountType, sum: number }, { rejectWithValue }) => {
+  'financialStatus/changeCardSum',
+  async ({ card, sum }: { card: CardType, sum: number }, { rejectWithValue }) => {
     try {
       return await updateCard({...card, sum: sum});
     } catch (e) {
@@ -32,7 +32,7 @@ export const changeCardSum = createAsyncThunk(
 );
 
 export const removeCard = createAsyncThunk(
-  'account/removeCard',
+  'financialStatus/removeCard',
   async (id: string, { rejectWithValue }) => {
     try {
       return await deleteCard(id);
@@ -42,11 +42,11 @@ export const removeCard = createAsyncThunk(
   }
 );
 
-export const makeAccount = createAsyncThunk(
-  'account/makeAccount',
+export const makeCard = createAsyncThunk(
+  'financialStatus/makeCard',
   async (card: Object , { rejectWithValue }) => {
     try {
-      return await createAccount({ ...card });
+      return await createCard({ ...card, actualDate: Date.now() });
     } catch (e) {
       return rejectWithValue(e.message)
     }
@@ -54,13 +54,13 @@ export const makeAccount = createAsyncThunk(
 );
 
 export const accountSlice = createSlice({
-  name: 'account',
+  name: 'financialStatus',
   initialState,
   reducers: {
-    setCard: (state, action: PayloadAction<AccountType>) => {
+    setCard: (state, action: PayloadAction<CardType>) => {
       state.cards[state.cards.findIndex(item => item._id === action.payload._id)] = action.payload;
     },
-    setCardSum: (state, action: PayloadAction<{ card: AccountType, sum: number }>) => {
+    setCardSum: (state, action: PayloadAction<{ card: CardType, sum: number }>) => {
       state.cards[state.cards.findIndex(item => item._id === action.payload.card._id)].sum = action.payload.sum;
     },
     setSum: (state, action: PayloadAction<number>) => {
@@ -95,19 +95,19 @@ export const accountSlice = createSlice({
     builder.addCase(removeCard.fulfilled, (state, action) => {
       state.pending = false;
       // @ts-ignore
-      state.cards = state.cards.filter((item: AccountType) => item._id !== action.payload._id);
+      state.cards = state.cards.filter((item: CardType) => item._id !== action.payload._id);
     });
     builder.addCase(removeCard.rejected, (state, action) => {
       state.pending = false;
       // @ts-ignore
       state.error = action.payload;
     });
-    builder.addCase(makeAccount.fulfilled, (state, action) => {
+    builder.addCase(makeCard.fulfilled, (state, action) => {
       state.pending = false;
       // @ts-ignore
       state.cards = [...state.cards, action.payload ];
     });
-    builder.addCase(makeAccount.rejected, (state, action) => {
+    builder.addCase(makeCard.rejected, (state, action) => {
       state.pending = false;
       // @ts-ignore
       state.error = action.payload;

@@ -1,4 +1,4 @@
-export type AccountType = {
+export type CardType = {
   _id: string
   name: string
   sum: number
@@ -7,7 +7,7 @@ export type AccountType = {
 };
 
 export type FinancialStatusType = {
-  cards: AccountType[]
+  cards: CardType[]
   sum: number
   pending: boolean
   error: string | null

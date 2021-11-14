@@ -32,7 +32,7 @@ export const App = () => {
           </Switch>
           :
           <Switch>
-            <Route exact path='/' component={FinancialStatus} />
+            <Route path='/' component={FinancialStatus} />
             <Redirect to='/' />
           </Switch>
         }
