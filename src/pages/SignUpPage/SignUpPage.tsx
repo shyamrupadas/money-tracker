@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import s from './SignUp.module.css';
-import { Input } from '../../components/input/Input';
+import { Input } from '../../shared/input/Input';
 import { registrationUser } from '../../store/authSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import styled from 'styled-components';

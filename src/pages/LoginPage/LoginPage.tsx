@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { Input } from '../../components/input/Input';
+import { Input } from '../../shared/input/Input';
 import { loginUser } from '../../store/authSlice';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
