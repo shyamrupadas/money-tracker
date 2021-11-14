@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { FinancialStatus } from '../components';
 import GlobalStyle from '../globalStyle';
-import { Navbar } from '../components/navbar/Navbar';
+import { Header } from '../features/Header/Header';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { SignUpPage } from '../pages/SignUpPage/SignUpPage';
 import './App.css';
@@ -22,7 +22,7 @@ export const App = () => {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Navbar />
+      <Header />
       <div className='wrapper'>
         {!isAuth ?
           <Switch>
