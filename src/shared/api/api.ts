@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CardType } from '../types/types';
+import { CardType } from '../../types/types';
 
 export const baseUrl = 'https://peaceful-bastion-22116.herokuapp.com/api/';
 export const accountUrl = `${baseUrl}account/`

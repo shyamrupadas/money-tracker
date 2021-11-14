@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchAccounts, accountSlice } from '../../store/accountSlice';
 import { CreateCard } from './CreateCard';
 import s from './FinancialStatus.module.css';
+import { Button, Container, Grid } from '@mui/material';
 
 export const FinancialStatus: React.FC = () => {
 
@@ -13,9 +14,9 @@ export const FinancialStatus: React.FC = () => {
 
   const [showCreateCard, setShowCreateCard] = useState(false);
 
-    useEffect(() => {
-      dispatch(fetchAccounts());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchAccounts());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(setSum(cards.reduce((sum, current) => sum + current.sum, 0)));
@@ -26,41 +27,45 @@ export const FinancialStatus: React.FC = () => {
 
   return (
     <main className={s.wrapper}>
-      <div className={s.container}>
-        <header>
-          <h1>
-            Состояние финансов
-          </h1>
-        </header>
-        <article>
-          <table>
-            <thead>
-            <tr>
-              <th>Карты</th>
-              <th>Сумма</th>
-              <th>Актуальность</th>
-              <th>&nbsp;</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
-              cards.map((card) => <Card key={card._id} card={card} />)
-            }
-            </tbody>
-            <tfoot>
-            <tr>
-              <td>Итого</td>
-              <td>{sum}</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            </tfoot>
-          </table>
-          <button onClick={() => setShowCreateCard(true)}>Добавить карту</button>
-          {showCreateCard && <CreateCard showModal={setShowCreateCard} />}
-          <p style={{ marginTop: '20px' }}>Двойной клик по сумме для изменения</p>
-        </article>
-      </div>
+      <Container>
+      <Grid container justifyContent={'center'}>
+        <div className={s.container}>
+          <header>
+            <h1>
+              Состояние финансов
+            </h1>
+          </header>
+          <article>
+            <table>
+              <thead>
+              <tr>
+                <th>Карты</th>
+                <th>Сумма</th>
+                <th>Актуальность</th>
+                <th>&nbsp;</th>
+              </tr>
+              </thead>
+              <tbody>
+              {
+                cards.map((card) => <Card key={card._id} card={card} />)
+              }
+              </tbody>
+              <tfoot>
+              <tr>
+                <td>Итого</td>
+                <td>{sum}</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              </tfoot>
+            </table>
+            <Button variant="outlined" onClick={() => setShowCreateCard(true)}>Добавить карту</Button>
+            {showCreateCard && <CreateCard showModal={setShowCreateCard} />}
+            <p style={{ marginTop: '20px' }}>Двойной клик по сумме для изменения</p>
+          </article>
+        </div>
+      </Grid>
+      </Container>
     </main>
   );
 };

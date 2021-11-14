@@ -7,9 +7,9 @@ justify-content: center;
   max-width: 600px;
 }
 
-button {
-  width: 120px;
-  height: 25px;
+.button {
+  width: 160px;
+
 }
 
 input {

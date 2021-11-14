@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CardType, FinancialStatusType } from '../types/types';
-import { createCard, deleteCard, getAccounts, updateCard } from '../api/api';
+import { createCard, deleteCard, getAccounts, updateCard } from '../shared/api/api';
 
 const initialState: FinancialStatusType = {
   cards: [],

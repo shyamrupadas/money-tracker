@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { auth } from '../api/api';
+import { auth } from '../shared/api/api';
 import { authSliceType } from '../types/types';
 
 const initialState: authSliceType = {

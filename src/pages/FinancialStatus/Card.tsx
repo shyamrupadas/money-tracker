@@ -49,7 +49,7 @@ export const Card: React.FC<CardProps> = ({ card }) => {
           onBlur={(e) => onInput(e.target.value)}
         />
       </td>
-      <td>{card.actualDate}</td>
+      <td>{card.actualDate.slice(0, 10)}</td>
       <td>&nbsp;</td>
     </tr>
     }
