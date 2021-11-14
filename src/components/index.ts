@@ -1,1 +1,1 @@
-export { FinancialStatus } from './FinancialStatus/FinancialStatus';
+export { FinancialStatus } from '../pages/FinancialStatus/FinancialStatus';

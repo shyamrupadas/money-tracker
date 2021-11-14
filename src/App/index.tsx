@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { FinancialStatus } from './components';
-import GlobalStyle from './globalStyle';
-import { Navbar } from './components/navbar/Navbar';
+import { FinancialStatus } from '../components';
+import GlobalStyle from '../globalStyle';
+import { Navbar } from '../components/navbar/Navbar';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { SignUpPage } from './pages/SignUpPage/SignUpPage';
+import { SignUpPage } from '../pages/SignUpPage/SignUpPage';
 import './App.css';
-import { LoginPage } from './pages/LoginPage';
-import { useAppDispatch, useAppSelector } from './hooks/hooks';
-import { authUser } from './store/authSlice';
+import { LoginPage } from '../pages/LoginPage';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import { authUser } from '../store/authSlice';
 
 
 export const App = () => {
