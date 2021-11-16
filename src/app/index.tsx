@@ -3,7 +3,7 @@ import { FinancialStatus } from '../components';
 import GlobalStyle from '../globalStyle';
 import { Header } from '../features/Header/Header';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { SignUpPage } from '../pages/SignUpPage/SignUpPage';
+import { SignUpPage } from '../pages/SignUpPage';
 import './App.css';
 import { LoginPage } from '../pages/LoginPage';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import s from './SignUp.module.css';
-import { Input } from '../../shared/input/Input';
+import { AuthInput } from '../../shared/AuthInput';
 import { registrationUser } from '../../store/authSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Button, Link, Typography } from '@mui/material';
 
 export const SignUpPage = () => {
   const [login, setLogin] = useState('');
@@ -19,32 +19,45 @@ export const SignUpPage = () => {
 
   return (
     <div className={s.registration}>
-      <h2>Регистрация</h2>
+      <Typography variant={'h4'} >
+        Регистрация
+      </Typography>
       {error &&
       <>
         <h4>Ошибка регистрации</h4>
         <p>{error}</p>
       </>
       }
-      <Input type={'text'} placeholder={'Введите login'} value={login} setValue={setLogin} />
-      <Input type={'password'} placeholder={'Введите пароль'} value={password} setValue={setPassword} />
+      <AuthInput type={'text'} placeholder={'Введите login'} value={login} setValue={setLogin} />
+      <AuthInput type={'password'} placeholder={'Введите пароль'} value={password} setValue={setPassword} />
       <ButtonPanel>
-        <button onClick={() => dispatch(registrationUser({ login, password }))}>Зарегистрировать</button>
-        <button onClick={resetForm}>Сбросить</button>
+        <Button
+          onClick={() => dispatch(registrationUser({ login, password }))}
+          variant="outlined"
+          sx={{ mr: 2 }}
+        >
+          Зарегистрировать
+        </Button>
+        <Button
+          onClick={resetForm}
+          variant="outlined"
+        >
+          Сбросить
+        </Button>
       </ButtonPanel>
-      <div className="mt-3">
+      <Typography>
         Вы также можете&nbsp;
-        <NavLink to='/login'>
+        <Link href="/login" underline="hover">
           войти
-        </NavLink>
-      </div>
+        </Link>
+      </Typography>
     </div>
   );
 };
 
 const ButtonPanel = styled.div`
   button {
-    display: flex;
-    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 `;

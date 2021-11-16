@@ -26,7 +26,6 @@ export const FinancialStatus: React.FC = () => {
   if (pending) return <h2>Загрузка...</h2>
 
   return (
-    <main className={s.wrapper}>
       <Container>
       <Grid container justifyContent={'center'}>
         <div className={s.container}>
@@ -66,6 +65,5 @@ export const FinancialStatus: React.FC = () => {
         </div>
       </Grid>
       </Container>
-    </main>
   );
 };
