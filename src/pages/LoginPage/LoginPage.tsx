@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { Input } from '../../shared/input/Input';
+import { AuthInput } from '../../shared/AuthInput';
 import { loginUser } from '../../store/authSlice';
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { Button, Link, Typography } from '@mui/material';
 
 export const LoginPage = () => {
   const [login, setLogin] = useState('');
@@ -18,33 +18,46 @@ export const LoginPage = () => {
 
   return (
     <LoginForm>
-      <h2>Вход</h2>
+      <Typography variant={'h4'} >
+        Вход
+      </Typography>
       {error &&
       <>
         <h4>Ошибка входа</h4>
         <p>{error}</p>
       </>
       }
-      <Input type={'text'} placeholder={'Введите login'} value={login} setValue={setLogin} />
-      <Input type={'password'} placeholder={'Введите пароль'} value={password} setValue={setPassword} />
+      <AuthInput type={'text'} placeholder={'Введите login'} value={login} setValue={setLogin} />
+      <AuthInput type={'password'} placeholder={'Введите пароль'} value={password} setValue={setPassword} />
       <ButtonPanel>
-        <button onClick={() => dispatch(loginUser({ login, password }))}>Войти</button>
-        <button onClick={resetForm}>Сбросить</button>
+        <Button
+          variant="outlined"
+          sx={{ mr: 2 }}
+          onClick={() => dispatch(loginUser({ login, password }))}
+        >
+          Войти
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={resetForm}
+        >
+          Сбросить
+        </Button>
       </ButtonPanel>
-      <div className="mt-3">
+      <Typography>
         Вы также можете&nbsp;
-        <NavLink to='/signup'>
+        <Link href="/signup" underline="hover">
           зарегистрироваться
-        </NavLink>
-      </div>
+        </Link>
+      </Typography>
     </LoginForm>
   );
 };
 
 const ButtonPanel = styled.div`
   button {
-    display: flex;
-    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 `;
 
