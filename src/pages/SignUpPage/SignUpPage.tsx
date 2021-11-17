@@ -1,63 +1,90 @@
-import React, { useState } from 'react';
-import s from './SignUp.module.css';
-import { AuthInput } from '../../shared/AuthInput';
-import { registrationUser } from '../../store/authSlice';
+import React from 'react';
+import { loginUser, registrationUser } from '../../store/authSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import styled from 'styled-components';
-import { Button, Link, Typography } from '@mui/material';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
 
 export const SignUpPage = () => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
   const { error } = useAppSelector(state => state.authSlice);
   const dispatch = useAppDispatch();
 
-  const resetForm = () => {
-    setLogin('');
-    setPassword('');
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // @ts-ignore
+    dispatch(registrationUser({ user: data.get('user'), password: data.get('password') }))
   };
 
   return (
-    <div className={s.registration}>
-      <Typography variant={'h4'} >
-        Регистрация
-      </Typography>
-      {error &&
-      <>
-        <h4>Ошибка регистрации</h4>
-        <p>{error}</p>
-      </>
-      }
-      <AuthInput type={'text'} placeholder={'Введите login'} value={login} setValue={setLogin} />
-      <AuthInput type={'password'} placeholder={'Введите пароль'} value={password} setValue={setPassword} />
-      <ButtonPanel>
-        <Button
-          onClick={() => dispatch(registrationUser({ login, password }))}
-          variant="outlined"
-          sx={{ mr: 2 }}
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
         >
-          Зарегистрировать
-        </Button>
-        <Button
-          onClick={resetForm}
-          variant="outlined"
-        >
-          Сбросить
-        </Button>
-      </ButtonPanel>
-      <Typography>
-        Вы также можете&nbsp;
-        <Link href="/login" underline="hover">
-          войти
-        </Link>
-      </Typography>
-    </div>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Регистрация
+          </Typography>
+          {error &&
+          <>
+            <Typography>Ошибка регистрации</Typography>
+            <Typography>{error}</Typography>
+          </>
+          }
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="user"
+                  label="Имя пользователя"
+                  name="user"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Пароль"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Создать аккаунт
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item xs>
+                <Link href="#"
+                      onClick={() => dispatch(loginUser({ user: 'test', password: 'test' }))} variant="body2">
+                  {"Войти в тестовом режиме"}
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="/login" variant="body2">
+                  Войти в свой аккаунт
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
   );
 };
-
-const ButtonPanel = styled.div`
-  button {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-`;
