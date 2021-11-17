@@ -88,10 +88,9 @@ export const authSlice = createSlice({
       state.currentUser = action.payload.user;
       state.isAuth = true;
     });
-    builder.addCase(authUser.rejected, (state, action) => {
+    builder.addCase(authUser.rejected, (state) => {
       state.pending = false;
       // @ts-ignore
-      state.error = action.payload;
       localStorage.removeItem('token');
     });
   }
