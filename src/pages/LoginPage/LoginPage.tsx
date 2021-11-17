@@ -1,73 +1,89 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { AuthInput } from '../../shared/AuthInput';
 import { loginUser } from '../../store/authSlice';
-import styled from 'styled-components';
-import { Button, Link, Typography } from '@mui/material';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Avatar, Box, Button, Container, CssBaseline, Grid, Link, TextField, Typography } from '@mui/material';
 
 export const LoginPage = () => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
   const { error } = useAppSelector(state => state.authSlice);
   const dispatch = useAppDispatch();
 
-  const resetForm = () => {
-    setLogin('');
-    setPassword('');
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // @ts-ignore
+    dispatch(loginUser({ user: data.get('user'), password: data.get('password') }));
   };
 
   return (
-    <LoginForm>
-      <Typography variant={'h4'} >
-        Вход
-      </Typography>
-      {error &&
-      <>
-        <h4>Ошибка входа</h4>
-        <p>{error}</p>
-      </>
-      }
-      <AuthInput type={'text'} placeholder={'Введите login'} value={login} setValue={setLogin} />
-      <AuthInput type={'password'} placeholder={'Введите пароль'} value={password} setValue={setPassword} />
-      <ButtonPanel>
-        <Button
-          variant="outlined"
-          sx={{ mr: 2 }}
-          onClick={() => dispatch(loginUser({ login, password }))}
-        >
-          Войти
-        </Button>
-        <Button
-          variant="outlined"
-          onClick={resetForm}
-        >
-          Сбросить
-        </Button>
-      </ButtonPanel>
-      <Typography>
-        Вы также можете&nbsp;
-        <Link href="/signup" underline="hover">
-          зарегистрироваться
-        </Link>
-      </Typography>
-    </LoginForm>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Вход
+        </Typography>
+        {error &&
+        <>
+          <Typography>Ошибка входа</Typography>
+          <Typography>{error}</Typography>
+        </>
+        }
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            defaultValue="test"
+            required
+            fullWidth
+            id="user"
+            label="Имя пользователя"
+            name="user"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            defaultValue="test"
+            required
+            fullWidth
+            name="password"
+            label="Пароль"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Войти
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#"
+                    onClick={() => dispatch(loginUser({ user: 'test', password: 'test' }))} variant="body2">
+                {"Войти в тестовом режиме"}
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="/signup" variant="body2">
+                {"Создать аккаунт"}
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
   );
 };
-
-const ButtonPanel = styled.div`
-  button {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-`;
-
-const LoginForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  padding: 30px;
-  border: darkgrey solid 1px;
-  border-radius: 10px;
-  align-self: center;
-  margin-top: 100px;
-`;

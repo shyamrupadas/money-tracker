@@ -26,9 +26,9 @@ export const registrationUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async ({ login, password }: { login: string, password: string }, { rejectWithValue }) => {
+  async ({ user, password }: { user: string, password: string }, { rejectWithValue }) => {
     try {
-      return await auth.login(login, password);
+      return await auth.login(user, password!);
     } catch (e) {
       return rejectWithValue(e.message)
     }
