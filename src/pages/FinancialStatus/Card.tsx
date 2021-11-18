@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { CardType } from '../../types/types';
 import { useAppDispatch } from '../../hooks/hooks';
-import { changeCardSum } from '../../store/accountSlice';
+import { changeCardSum, removeCard } from '../../store/accountSlice';
 import TableRow from '@mui/material/TableRow';
 import { IconButton, TableCell, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import CloseIcon from '@mui/icons-material/Close';
 
 type CardProps = {
   card: CardType
@@ -21,11 +22,11 @@ export const Card: React.FC<CardProps> = ({ card }) => {
 
   };
 
-  // const onButton = () => {
-  //   if (window.confirm('вы уверены?')) {
-  //     dispatch(removeCard(card._id));
-  //   }
-  // };
+  const onDeleteButton = (id: string) => {
+    if (window.confirm('вы уверены?')) {
+      dispatch(removeCard(id));
+    }
+  };
 
 
   return <>
@@ -100,6 +101,13 @@ export const Card: React.FC<CardProps> = ({ card }) => {
           onClick={() => setViewMode('edit')}
         >
           <EditIcon />
+        </IconButton>
+        <IconButton
+          size={'small'}
+          color="inherit"
+          onClick={() => onDeleteButton(card._id)}
+        >
+          <CloseIcon />
         </IconButton>
       </TableCell>
     </TableRow>

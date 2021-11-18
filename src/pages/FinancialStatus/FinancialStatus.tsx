@@ -40,16 +40,15 @@ export const FinancialStatus: React.FC = () => {
       }}
     >
       <Typography
-        variant='h3'
+        variant='h4'
         mt={'10px'}
         mb={'20px'}
       >
-        Состояние финансов
+        Счета
       </Typography>
       <TableContainer
         component={Paper}
         sx={{
-          maxWidth: 600,
           ml: 'auto',
           mr: 'auto',
           mb: '20px'
@@ -71,18 +70,26 @@ export const FinancialStatus: React.FC = () => {
           </TableBody>
           <TableHead>
             <TableRow hover>
-            <TableCell>Итого</TableCell>
-            <TableCell align="right">{sum}</TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
+              <TableCell>Итого</TableCell>
+              <TableCell align="right">{sum}</TableCell>
+              <TableCell align="right"> </TableCell>
+              <TableCell align="right"> </TableCell>
+              <TableCell align="right"> </TableCell>
             </TableRow>
           </TableHead>
         </Table>
       </TableContainer>
-      <Button variant="outlined" onClick={() => setShowCreateCard(true)}>Добавить карту</Button>
       {showCreateCard && <CreateCard showModal={setShowCreateCard} />}
-      <p style={{ marginTop: '20px' }}>Двойной клик по сумме для изменения</p>
+      {!showCreateCard &&
+      <Button
+
+        variant="outlined"
+        onClick={() => setShowCreateCard(true)}
+      >
+        Добавить счет
+      </Button>
+      }
+      <p style={{ marginTop: '20px' }}>*Двойной клик по сумме для изменения</p>
     </Container>
   );
 };

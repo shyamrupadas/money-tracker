@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useAppDispatch } from '../../hooks/hooks';
 import { makeCard } from '../../store/accountSlice';
+import { Button, TextField } from '@mui/material';
 
 type CreateCardType = {
   showModal: Dispatch<SetStateAction<boolean>>
@@ -20,14 +21,39 @@ export const CreateCard: React.FC<CreateCardType> = ({showModal}) => {
   };
 
   return (
-    <>
       <form onSubmit={handleSubmit}>
-        <input type='text' name='cardName' id='cardName' placeholder='Название карты' />
-        <input type='text' name='cardSum' id='cardSum' placeholder='Сумма'/>
-        <button>Добавить</button>
-        <button type='button' onClick={() => showModal(false)}>Отмена</button>
+        <TextField
+          type={'outlined'}
+          autoFocus={true}
+          size={'small'}
+          name='cardName'
+          id='cardName'
+          placeholder='Название'
+        />
+        <TextField
+          sx={{ width: '130px', ml: '10px'}}
+          type={'outlined'}
+          size={'small'}
+          name='cardSum'
+          id='cardSum'
+          placeholder='Сумма'
+        />
+        <Button
+          type='submit'
+          variant='outlined'
+          sx={{ml: '10px'}}
+        >
+          Добавить
+        </Button>
+        <Button
+          type='button'
+          variant='outlined'
+          color={'error'}
+          sx={{ml: '10px'}}
+          onClick={() => showModal(false)}
+        >
+          X
+        </Button>
       </form>
-
-    </>
   )
 };
