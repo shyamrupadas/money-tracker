@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CardType } from '../../types/types';
 import { useAppDispatch } from '../../hooks/hooks';
-import { changeCardSum, removeCard } from '../../store/accountSlice';
+import { changeCardSum } from '../../store/accountSlice';
 import TableRow from '@mui/material/TableRow';
 import { IconButton, TableCell, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -21,11 +21,11 @@ export const Card: React.FC<CardProps> = ({ card }) => {
 
   };
 
-  const onButton = () => {
-    if (window.confirm('вы уверены?')) {
-      dispatch(removeCard(card._id));
-    }
-  };
+  // const onButton = () => {
+  //   if (window.confirm('вы уверены?')) {
+  //     dispatch(removeCard(card._id));
+  //   }
+  // };
 
 
   return <>
