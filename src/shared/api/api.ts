@@ -25,7 +25,7 @@ export const deleteCard = async (id: string) => {
 
 export const createCard = async (card: Object) => {
   return await axios
-    .post(accountUrl, card)
+    .post(accountUrl, card, {headers:{Authorization: `Bearer ${localStorage.getItem('token')}`}})
     .then(res => res.data);
 };
 
