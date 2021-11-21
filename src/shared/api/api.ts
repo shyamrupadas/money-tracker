@@ -3,29 +3,29 @@ import { CardType } from '../../types/types';
 
 export const baseUrl = 'https://peaceful-bastion-22116.herokuapp.com/api/';
 export const accountUrl = `${baseUrl}account/`
-
+const authHeader = {headers:{Authorization: `Bearer ${localStorage.getItem('token')}`}};
 
 export const getAccounts = async () => {
   return await axios
-    .get(accountUrl, {headers:{Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    .get(accountUrl, authHeader)
     .then(res => res.data);
 };
 
 export const updateCard = async (card: CardType) => {
   return await axios
-    .put(accountUrl, card)
+    .put(accountUrl, card, authHeader)
     .then(res => res.data);
 };
 
 export const deleteCard = async (id: string) => {
   return await axios
-    .delete(accountUrl + id)
+    .delete(accountUrl + id, authHeader)
     .then(res => res.data);
 };
 
 export const createCard = async (card: Object) => {
   return await axios
-    .post(accountUrl, card, {headers:{Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    .post(accountUrl, card, authHeader)
     .then(res => res.data);
 };
 
@@ -43,7 +43,7 @@ export const auth = {
   },
   auth() {
     return axios
-      .get(`${baseUrl}auth`,{headers:{Authorization: `Bearer ${localStorage.getItem('token')}`}})
+      .get(`${baseUrl}auth`, authHeader)
       .then(res => res.data);
   }
 
