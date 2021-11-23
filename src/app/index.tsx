@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { FinancialStatus } from '../components';
+import { FinancialStatus } from '../pages/FinancialStatus';
 import GlobalStyle from '../globalStyle';
-import { Header } from '../features/Header/Header';
+import { Header } from '../features/Header';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { SignUpPage } from '../pages/SignUpPage';
 import './App.css';

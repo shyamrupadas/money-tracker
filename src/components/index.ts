@@ -1,1 +1,0 @@
-export { FinancialStatus } from '../pages/FinancialStatus/FinancialStatus';
