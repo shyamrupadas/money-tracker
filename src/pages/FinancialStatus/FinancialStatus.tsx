@@ -11,6 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Footer } from '../../features/Footer';
 
 export const FinancialStatus: React.FC = () => {
 
@@ -89,7 +90,7 @@ export const FinancialStatus: React.FC = () => {
         Добавить счет
       </Button>
       }
-      <p style={{ marginTop: '20px' }}>*Двойной клик по сумме для изменения</p>
+      <Footer text='*Двойной клик по сумме для изменения'/>
     </Container>
   );
 };
