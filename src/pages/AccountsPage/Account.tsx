@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { AccountType } from './types/types';
-import { useAppDispatch } from '../hooks/hooks';
-import { changeCardSum, removeCard } from '../store/accountSlice';
+import { AccountType } from '../../shared/types/types';
+import { useAppDispatch } from '../../hooks/hooks';
+import { changeCardSum, removeCard } from '../../store/accountSlice';
 import TableRow from '@mui/material/TableRow';
 import { IconButton, TableCell, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';

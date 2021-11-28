@@ -1,4 +1,4 @@
-import { Account } from '../../shared/Account';
+import { Account } from './Account';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import React, { useEffect, useState } from 'react';
 import { accountSlice, fetchAccounts } from '../../store/accountSlice';
