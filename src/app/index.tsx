@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FinancialStatus } from '../pages/FinancialStatus';
+import { AccountsPage } from '../pages/AccountsPage';
 import GlobalStyle from '../globalStyle';
 import { Header } from '../features/Header';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
@@ -32,7 +32,7 @@ export const App = () => {
           </Switch>
           :
           <Switch>
-            <Route path='/' component={FinancialStatus} />
+            <Route path='/' component={AccountsPage} />
             <Redirect to='/' />
           </Switch>
         }

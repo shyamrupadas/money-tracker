@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { CardType } from '../../types/types';
-import { useAppDispatch } from '../../hooks/hooks';
-import { changeCardSum, removeCard } from '../../store/accountSlice';
+import { AccountType } from './types/types';
+import { useAppDispatch } from '../hooks/hooks';
+import { changeCardSum, removeCard } from '../store/accountSlice';
 import TableRow from '@mui/material/TableRow';
 import { IconButton, TableCell, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 
-type CardProps = {
-  card: CardType
+type AccountProps = {
+  card: AccountType
 };
 
-export const Card: React.FC<CardProps> = ({ card }) => {
+export const Account: React.FC<AccountProps> = ({ card }) => {
   const [viewMode, setViewMode] = useState<'normal' | 'hover' | 'edit'>('normal');
   const [inputSum, setInputSum] = useState(card.sum.toString());
   const dispatch = useAppDispatch();

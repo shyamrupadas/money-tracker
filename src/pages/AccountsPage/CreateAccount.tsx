@@ -3,11 +3,11 @@ import { useAppDispatch } from '../../hooks/hooks';
 import { makeCard } from '../../store/accountSlice';
 import { Button, TextField } from '@mui/material';
 
-type CreateCardType = {
+type CreateAccountType = {
   showModal: Dispatch<SetStateAction<boolean>>
 };
 
-export const CreateCard: React.FC<CreateCardType> = ({ showModal }) => {
+export const CreateAccount: React.FC<CreateAccountType> = ({ showModal }) => {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (e: any) => {

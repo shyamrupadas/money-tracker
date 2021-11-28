@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CardType, FinancialStatusType } from '../types/types';
+import { AccountType, FinancialStatusType } from '../shared/types/types';
 import { createCard, deleteCard, getAccounts, updateCard } from '../shared/api/api';
 
 const initialState: FinancialStatusType = {
@@ -22,7 +22,7 @@ export const fetchAccounts = createAsyncThunk(
 
 export const changeCardSum = createAsyncThunk(
   'financialStatus/changeCardSum',
-  async ({ card, sum }: { card: CardType, sum: number }, { rejectWithValue }) => {
+  async ({ card, sum }: { card: AccountType, sum: number }, { rejectWithValue }) => {
     try {
       return await updateCard({...card, sum: sum});
     } catch (e) {
@@ -57,10 +57,10 @@ export const accountSlice = createSlice({
   name: 'financialStatus',
   initialState,
   reducers: {
-    setCard: (state, action: PayloadAction<CardType>) => {
+    setCard: (state, action: PayloadAction<AccountType>) => {
       state.cards[state.cards.findIndex(item => item._id === action.payload._id)] = action.payload;
     },
-    setCardSum: (state, action: PayloadAction<{ card: CardType, sum: number }>) => {
+    setCardSum: (state, action: PayloadAction<{ card: AccountType, sum: number }>) => {
       state.cards[state.cards.findIndex(item => item._id === action.payload.card._id)].sum = action.payload.sum;
     },
     setSum: (state, action: PayloadAction<number>) => {
@@ -95,7 +95,7 @@ export const accountSlice = createSlice({
     builder.addCase(removeCard.fulfilled, (state, action) => {
       state.pending = false;
       // @ts-ignore
-      state.cards = state.cards.filter((item: CardType) => item._id !== action.payload._id);
+      state.cards = state.cards.filter((item: AccountType) => item._id !== action.payload._id);
     });
     builder.addCase(removeCard.rejected, (state, action) => {
       state.pending = false;

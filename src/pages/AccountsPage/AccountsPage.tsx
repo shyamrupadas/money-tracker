@@ -1,8 +1,8 @@
-import { Card } from './Card';
+import { Account } from '../../shared/Account';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import React, { useEffect, useState } from 'react';
 import { accountSlice, fetchAccounts } from '../../store/accountSlice';
-import { CreateCard } from './CreateCard';
+import { CreateAccount } from './CreateAccount';
 import { Button, Container, Typography } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,7 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Footer } from '../../features/Footer';
 
-export const FinancialStatus: React.FC = () => {
+export const AccountsPage: React.FC = () => {
 
   const { cards, sum, pending, error } = useAppSelector(state => state.accountSlice);
   const dispatch = useAppDispatch();
@@ -66,7 +66,7 @@ export const FinancialStatus: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cards.map(card => <Card key={card._id} card={card} />
+            {cards.map(card => <Account key={card._id} card={card} />
             )}
           </TableBody>
           <TableHead>
@@ -80,7 +80,7 @@ export const FinancialStatus: React.FC = () => {
           </TableHead>
         </Table>
       </TableContainer>
-      {showCreateCard && <CreateCard showModal={setShowCreateCard} />}
+      {showCreateCard && <CreateAccount showModal={setShowCreateCard} />}
       {!showCreateCard &&
       <Button
 

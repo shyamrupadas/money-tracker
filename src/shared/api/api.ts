@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CardType } from '../../types/types';
+import { AccountType } from '../types/types';
 
 export const baseUrl = 'https://peaceful-bastion-22116.herokuapp.com/api/';
 export const accountUrl = `${baseUrl}account/`
@@ -11,7 +11,7 @@ export const getAccounts = async () => {
     .then(res => res.data);
 };
 
-export const updateCard = async (card: CardType) => {
+export const updateCard = async (card: AccountType) => {
   return await axios
     .put(accountUrl, card, authHeader)
     .then(res => res.data);
